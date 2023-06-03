@@ -6,13 +6,22 @@
     <div class="mr-auto">
         <h2 class="font-semibold text-xl pl-8">LOGO</h2>
     </div>
-    <div class="flex gap-6 items-center text-xs">
+    <div class="flex gap-6 items-center text-base">
         <i class="fa-solid fa-magnifying-glass" />
-        <i class="fa-regular fa-bell" />
-        <div>
-            <img src="./src/images/user-profile-photo.jpg" alt="" class="w-5 rounded-full"/>
+        <div class="relative">
+            <i class="fa-regular fa-bell" />
+            <div
+                class="bg-red-500 w-1.5 rounded-full h-1.5 absolute top-0.5 -right-0.5 z-20 m-0.5"
+            />
         </div>
-        <span >{userName}</span>
+        <div>
+            <img
+                src="./src/images/user-profile-photo.jpg"
+                alt=""
+                class="w-5 rounded-full"
+            />
+        </div>
+        <span>{userName}</span>
         <i class="fa-solid fa-chevron-down" />
     </div>
 </nav>
