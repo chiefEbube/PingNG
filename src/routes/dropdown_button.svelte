@@ -9,20 +9,18 @@
     const focusOut = () => (dropDownOpen = false);
 </script>
 
-<div class="drop-down-container">
+<div>
     <button
-        class="add-contact-btn"
+        class="bg-green-800 text-white p-3 rounded-md flex items-center gap-2 z-20"
         on:click={handleDropDownClick}
         on:focusout={focusOut}
     >
-        <div class="add-btn">
-            {title}
-            <i class="fa-solid fa-chevron-down" />
-        </div>
+        {title}
+        <i class="fa-solid fa-chevron-down border-l pl-2" />
     </button>
 
     {#if dropDownOpen}
-        <div class="drop" transition:fade={{ delay: 250, duration: 300 }}>
+        <div transition:fade={{ delay: 250, duration: 300 }}>
             {#each dropDownOptions as option}
                 <div class="drop-add">{option}</div>
             {/each}

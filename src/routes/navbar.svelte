@@ -2,7 +2,7 @@
     let userName = "Rick Adam";
 </script>
 
-<nav class="bg-white w-screen py-4 px-8 flex text-slate-950">
+<nav class="bg-white w-full py-4 px-8 flex text-slate-950">
     <div class="mr-auto">
         <h2 class="font-semibold text-xl pl-8">LOGO</h2>
     </div>

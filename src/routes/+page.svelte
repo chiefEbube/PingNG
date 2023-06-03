@@ -6,28 +6,23 @@
     import TopCard from "./top_card.svelte";
 </script>
 
-<main>
-    <div class="container absolute">
-
-        <div>
-            <Navbar />
-        </div>
-
-        <div>
-            <Sidebar />
-
-            <!-- main content -->
-            <div>
-                
-                <!-- top_card -->
-                <TopCard />
-                
-                <!-- Table -->
-                <Table />
-            </div>
-            
-        </div>
-
-        <Random><p>Hello</p></Random>
+<main class="w-full">
+    <div>
+        <Navbar />
     </div>
+
+    <div class="flex w-full">
+        <Sidebar />
+
+        <!-- main content -->
+        <div class="w-full">
+            <!-- top_card -->
+            <TopCard />
+
+            <!-- Table -->
+            <Table />
+        </div>
+    </div>
+
+    <Random><p>Hello</p></Random>
 </main>

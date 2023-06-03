@@ -1,4 +1,4 @@
-<div class="bg-white w-44 h-screen pt-10 px-5 text-slate-900 text-sm">
+<div class="bg-white h-screen pt-10 px-5 text-slate-900 text-sm basis-2/12">
     <div class="flex rounded-md my-4 p-2.5">
         <img
             src="../src/images/material-symbols_dashboard.png"
