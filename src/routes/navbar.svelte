@@ -4,24 +4,24 @@
 
 <nav class="bg-white w-full py-4 px-8 flex text-slate-950">
     <div class="mr-auto">
-        <h2 class="font-semibold text-xl pl-8">LOGO</h2>
+        <h2 class="font-semibold text-xl pl-8 cursor-pointer">LOGO</h2>
     </div>
     <div class="flex gap-6 items-center text-base">
-        <i class="fa-solid fa-magnifying-glass" />
-        <div class="relative">
+        <i class="fa-solid fa-magnifying-glass cursor-pointer" />
+        <div class="relative cursor-pointer">
             <i class="fa-regular fa-bell" />
             <div
                 class="bg-red-500 w-1.5 rounded-full h-1.5 absolute top-0.5 -right-0.5 z-20 m-0.5"
             />
         </div>
-        <div>
+        <div class="cursor-pointer">
             <img
                 src="./src/images/user-profile-photo.jpg"
                 alt=""
                 class="w-5 rounded-full"
             />
         </div>
-        <span>{userName}</span>
-        <i class="fa-solid fa-chevron-down" />
+        <span class="cursor-pointer">{userName}</span>
+        <i class="fa-solid fa-chevron-down cursor-pointer" />
     </div>
 </nav>
