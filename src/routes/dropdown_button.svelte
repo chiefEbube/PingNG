@@ -1,14 +1,23 @@
 <script>
     import { fade } from "svelte/transition";
-    import Random from "./random.svelte";
-    import handleShowCard from "./random.svelte";
-    import showCard from "./random.svelte"
+    import { createEventDispatcher } from "svelte";
+
     export let title = "";
     export let dropDownOptions = [];
 
     let dropDownOpen = false;
+    
     const handleDropDownClick = () => (dropDownOpen = !dropDownOpen);
     const focusOut = () => (dropDownOpen = false);
+    
+    const dispatch  = createEventDispatcher();
+
+    const handleShowCard = (value) => {
+
+        if(value === 'add'){
+            dispatch('add-card');
+        }
+    }
 </script>
 
 <div class="relative">
@@ -25,10 +34,9 @@
         <div transition:fade={{ delay: 250, duration: 300 }}
         class="absolute top-15 w-40 left-0 px-2 pt-2 bg-white z-40 drop-shadow-md rounded-sm">
             {#each dropDownOptions as option}
-                <button class="p-2 mb-2 rounded-sm hover:bg-gray-100 w-full text-left">
-                {option}</button>
+                <button class="p-2 mb-2 rounded-sm hover:bg-gray-100 w-full text-left" on:click={ () => handleShowCard(option.value) }>
+                {option.label}</button>
             {/each}
         </div>
     {/if}
 </div>
-<Random></Random>
