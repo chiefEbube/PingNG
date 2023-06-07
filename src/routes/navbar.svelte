@@ -11,7 +11,7 @@
         <div class="relative cursor-pointer">
             <i class="fa-regular fa-bell" />
             <div
-                class="bg-red-500 w-1.5 rounded-full h-1.5 absolute top-0.5 -right-0.5 z-20 m-0.5"
+                class="bg-red-500 w-2.5 aspect-square rounded-full absolute top-0 -right-1 z-20 m-0.5 border-2 border-white"
             />
         </div>
         <div class="cursor-pointer">
