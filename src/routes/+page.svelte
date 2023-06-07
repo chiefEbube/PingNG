@@ -6,7 +6,7 @@
     import TopCard from "./top_card.svelte";
 </script>
 
-<main class="w-full">
+<main class="w-full relative">
     <div>
         <Navbar />
     </div>
@@ -23,6 +23,4 @@
             <Table />
         </div>
     </div>
-
-    <Random><p>Hello</p></Random>
 </main>

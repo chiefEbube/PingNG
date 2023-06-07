@@ -1,6 +1,5 @@
 <script>
     import DropdownButton from "./dropdown_button.svelte";
-    import Random from "./random.svelte";
 
     let dropDownOptions = ["Add Contacts", "Import from CSV"]
 
