@@ -1,8 +1,10 @@
 <script>
     import DropdownButton from "./dropdown_button.svelte";
-    import Random from "./random.svelte";
+    import AddCard from "./addCard.svelte";
+    import AddForm from "./addForm.svelte";
 
     let showCard = false;
+    let title = ""
 
     const handleShowCard = () => showCard = ! showCard;
 
@@ -16,7 +18,9 @@
     
 
     { #if showCard}
-        <Random on:close-card={ handleShowCard } ></Random>
+        <AddCard title="Add New Contact" on:close-card={ handleShowCard } >
+        <AddForm />
+        </AddCard>
     {/if}
 
 </div>

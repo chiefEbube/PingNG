@@ -1,6 +1,5 @@
 <script>
     import Navbar from "./navbar.svelte";
-    import Random from "./random.svelte";
     import Sidebar from "./sidebar.svelte";
     import Table from "./table.svelte";
     import TopCard from "./top_card.svelte";
@@ -24,3 +23,4 @@
         </div>
     </div>
 </main>
+
