@@ -2,25 +2,41 @@
     import DropdownButton from "./dropdown_button.svelte";
     import AddCard from "./addCard.svelte";
     import AddForm from "./addForm.svelte";
+    import ImportCard from "./importCard.svelte";
 
     let showCard = false;
-    let title = ""
+    let showImport = false;
+    let title = "";
 
-    const handleShowCard = () => showCard = ! showCard;
+    const handleShowCard = () => (showCard = !showCard);
+    const handleShowImportCard = () => (showImport = !showImport);
 
-    let dropDownOptions = [{"value" : "add","label":"Add Contacts"}, {"value":"import","label":"Import from CSV"}]
+    let dropDownOptions = [
+        { value: "add", label: "Add Contacts" },
+        { value: "import", label: "Import from CSV" },
+    ];
+</script>
 
-</script> 
-
-<div class="flex items-center bg-white w-11/12 mx-auto mt-10 py-4 px-6 rounded-md text-sm">
+<div
+    class="flex items-center bg-white w-11/12 mx-auto mt-10 py-4 px-6 rounded-md text-sm"
+>
     <div class="mr-auto">Contacts</div>
-    <DropdownButton on:add-card={ handleShowCard } title="Add Contacts" {dropDownOptions}/>
-    
+    <DropdownButton
+        on:add-card={handleShowCard}
+        on:import-card={handleShowImportCard}
+        title="Add Contacts"
+        {dropDownOptions}
+    />
 
-    { #if showCard}
-        <AddCard title="Add New Contact" on:close-card={ handleShowCard } >
-        <AddForm />
+    {#if showCard}
+        <AddCard title="Add New Contact" on:close-card={handleShowCard}>
+            <AddForm />
         </AddCard>
     {/if}
 
+    {#if showImport}
+        <AddCard title="Import Contact" on:close-card={handleShowImportCard}>
+            <ImportCard />
+        </AddCard>
+    {/if}
 </div>

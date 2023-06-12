@@ -17,6 +17,10 @@
         if(value === 'add'){
             dispatch('add-card');
         }
+
+        else if(value === 'import'){
+            dispatch('import-card')
+        }
     }
 </script>
 

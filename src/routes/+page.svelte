@@ -1,4 +1,5 @@
 <script>
+    import ImportCard from "./importCard.svelte";
     import Navbar from "./navbar.svelte";
     import Sidebar from "./sidebar.svelte";
     import Table from "./table.svelte";
@@ -23,4 +24,3 @@
         </div>
     </div>
 </main>
-
