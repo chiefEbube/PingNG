@@ -1,12 +1,11 @@
 <script>
-    import ImportCard from "./importCard.svelte";
     import Navbar from "./navbar.svelte";
     import Sidebar from "./sidebar.svelte";
     import Table from "./table.svelte";
     import TopCard from "./top_card.svelte";
 </script>
 
-<main class="w-full relative">
+<main class="w-full min-h-screen relative">
     <div>
         <Navbar />
     </div>
