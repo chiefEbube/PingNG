@@ -1,0 +1,1 @@
+<input on:input type="text" class="border-2 border-cyan-900 mt-4" >
