@@ -9,7 +9,7 @@
 
 <div
     transition:fade={{ delay: 250, duration: 300 }}
-    class="absolute min-h-full z-20 w-1/3 h-screen top-0 right-0 bg-white py-8 px-6 shadow-2xl overflow-y-scroll"
+    class="fixed min-h-full z-20 w-1/3 h-screen top-0 right-0 bg-white py-8 px-6 shadow-2xl overflow-y-scroll"
 >
     <div class="w-full flex items-center justify-between">
         <h2 class="text-2xl">{title}</h2>
