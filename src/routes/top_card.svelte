@@ -8,10 +8,10 @@
 
     let showCard = false;
     let showImport = false;
-    let title = "";
+    //let title = "";
 
     const addContact = (e) => {
-        dispatch('add_contact', e.detail)
+        dispatch('add_contact')
     }
 
     const closeCard = () => (showCard = false);

@@ -21,15 +21,7 @@
             },
         });
 
-        
-        let newRequest = await fetch(
-            'http://localhost:8000/api/contact-list?sort={"first_name":"desc"}&perPage=10'
-        );
-
-        let response = await newRequest.json();
-        const contacts = response.data;
-
-        dispatch('addContact, contacts')
+        dispatch('addContact')
     };
 
 </script>

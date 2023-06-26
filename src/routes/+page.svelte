@@ -5,31 +5,20 @@
     import Table from "./table.svelte";
     import TopCard from "./top_card.svelte";
 
-    let headings = [
-        'First Name',
-        'Last Name',
-        'Phone Number'
-    ]
+    let headings = ["First Name", "Last Name", "Phone Number"];
 
-    let contacts = []
+    let contacts = [];
 
-    const updateContact = (contactArray, contact) => {
-                contactArray = contact
-            }
-
-    const updateTable = async () =>{
-            let request = await fetch(
+    const updateTable = async () => {
+        let request = await fetch(
             'http://localhost:8000/api/contact-list?sort={"first_name":"desc"}&perPage=10'
         );
 
         let response = await request.json();
         contacts = response.data;
-        }
+    };
 
-    
-
-   onMount(updateTable)
-
+    onMount(updateTable);
 </script>
 
 <main class="relative w-full min-h-screen">
@@ -43,7 +32,7 @@
         <!-- main content -->
         <div class="w-full">
             <!-- top_card -->
-            <TopCard on:add_contact={updateContact(contacts, e.detail)} />
+            <TopCard on:add_contact={updateTable} />
 
             <!-- Table -->
             <Table {headings}>
