@@ -86,18 +86,40 @@
             <h4 class="font-bold text-xs">
                 What should we do with the contact information
             </h4>
-            <div class="text-gray-500 flex gap-2 items-center py-1">
+
+            <div class="flex flex-col gap-y-3 mt-3">
+                <div class="flex">
+                  <input type="radio" name="hs-radio-vertical-group" class="shrink-0 mt-0.5 border-gray-200 rounded-full text-green-600 focus:ring-green-500 checked:bg-green-800" id="hs-radio-vertical-group-1" checked>
+                  <label for="hs-radio-vertical-group-1" class="text-sm text-gray-800 ml-2">Add new contacts and update existing ones</label>
+                </div>
+              
+                <div class="flex">
+                  <input type="radio" name="hs-radio-vertical-group" class="shrink-0 mt-0.5 border-gray-200 rounded-full text-green-600 focus:ring-green-500 checked:bg-green-800" id="hs-radio-vertical-group-2">
+                  <label for="hs-radio-vertical-group-2" class="text-sm text-gray-800 ml-2">Only add new contacts</label>
+                </div>
+
+                <div class="flex">
+                    <input type="radio" name="hs-radio-vertical-group" class="shrink-0 mt-0.5 border-gray-200 rounded-full text-green-600 focus:ring-green-500 checked:bg-green-800" id="hs-radio-vertical-group-3">
+                    <label for="hs-radio-vertical-group-3" class="text-sm text-gray-800 ml-2">Only update existing ones</label>
+                  </div>
+            </div>
+
+
+
+
+
+            <!-- <div class="text-gray-500 flex gap-2 items-center py-1">
                 <input type="radio" checked />
-                <label for="">Add new contacts and update existing ones</label>
+                <label for=""></label>
             </div>
             <div class="text-gray-500 flex gap-2 items-center py-1">
                 <input type="radio" />
-                <label for="">Only add new contacts</label>
+                <label for=""></label>
             </div>
             <div class="text-gray-500 flex gap-2 items-center pt-1">
                 <input type="radio" />
-                <label for="">Only update existing ones</label>
-            </div>
+                <label for=""></label>
+            </div> -->
         </div>
         <Button btnName="Next" on:click={handleNext} />
 
@@ -204,7 +226,6 @@
     input[type="radio"] {
         padding: 0.5em;
         appearance: none;
-        -webkit-appearance: none;
         border: solid;
         border-radius: 3em;
     }

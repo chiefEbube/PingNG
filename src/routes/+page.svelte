@@ -8,14 +8,18 @@
     let headings = ["First Name", "Last Name", "Phone Number"];
 
     let contacts = [];
+    let pageNumber = 1;
+
 
     const updateTable = async () => {
         let request = await fetch(
-            'http://localhost:8000/api/contact-list?sort={"first_name":"desc"}&perPage=10'
+            `http://localhost:8000/api/contact-list?page=${pageNumber}&sort={"first_name":"desc"}&perPage=10`
         );
 
         let response = await request.json();
         contacts = response.data;
+
+        console.log(contacts)
     };
 
     onMount(updateTable);
@@ -52,6 +56,7 @@
                         >
                     </tr>
                 {/each}
+
             </Table>
         </div>
     </div>
