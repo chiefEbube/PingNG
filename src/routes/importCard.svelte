@@ -10,6 +10,14 @@
 
     let showUploadFileField = true;
     let showNext = false;
+    let title = "Choose file to import";
+
+    let files;
+    $: if (files) {
+        for (const file of files) {
+            title = `${file.name}: ${file.size} bytes`;
+        }
+    }
 
     const handleShowUploadFileField = () => {
         showUploadFileField = true;
@@ -69,7 +77,13 @@
         </div>
 
         <div class="border-dashed border-2 grid gap-5 py-5">
-            <input type="file" id="importBtn" class="hidden" />
+            <input
+                type="file"
+                bind:files
+                required
+                id="importBtn"
+                class="hidden"
+            />
             <img
                 src="./src/images/file-icon.png"
                 alt=""
@@ -78,7 +92,7 @@
             <label
                 for="importBtn"
                 class="border-2 mx-auto px-2 py-1 cursor-pointer rounded-md text-xs bg-gray-300"
-                >Choose file to import</label
+                >{title}</label
             >
         </div>
 
@@ -87,42 +101,55 @@
                 What should we do with the contact information
             </h4>
 
-            <div class="flex flex-col gap-y-3 mt-3">
+            <form class="flex flex-col gap-y-3 mt-3">
                 <div class="flex">
-                  <input type="radio" name="hs-radio-vertical-group" class="shrink-0 mt-0.5 border-gray-200 rounded-full text-green-600 focus:ring-green-500 checked:bg-green-800" id="hs-radio-vertical-group-1" checked>
-                  <label for="hs-radio-vertical-group-1" class="text-sm text-gray-800 ml-2">Add new contacts and update existing ones</label>
+                    <input
+                        required
+                        type="radio"
+                        name="hs-radio-vertical-group"
+                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-green-600 focus:ring-green-500 checked:bg-green-800"
+                        id="hs-radio-vertical-group-1"
+                        checked
+                    />
+                    <label
+                        for="hs-radio-vertical-group-1"
+                        class="text-sm text-gray-800 ml-2"
+                        >Add new contacts and update existing ones</label
+                    >
                 </div>
-              
+
                 <div class="flex">
-                  <input type="radio" name="hs-radio-vertical-group" class="shrink-0 mt-0.5 border-gray-200 rounded-full text-green-600 focus:ring-green-500 checked:bg-green-800" id="hs-radio-vertical-group-2">
-                  <label for="hs-radio-vertical-group-2" class="text-sm text-gray-800 ml-2">Only add new contacts</label>
+                    <input
+                        required
+                        type="radio"
+                        name="hs-radio-vertical-group"
+                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-green-600 focus:ring-green-500 checked:bg-green-800"
+                        id="hs-radio-vertical-group-2"
+                    />
+                    <label
+                        for="hs-radio-vertical-group-2"
+                        class="text-sm text-gray-800 ml-2"
+                        >Only add new contacts</label
+                    >
                 </div>
 
                 <div class="flex">
-                    <input type="radio" name="hs-radio-vertical-group" class="shrink-0 mt-0.5 border-gray-200 rounded-full text-green-600 focus:ring-green-500 checked:bg-green-800" id="hs-radio-vertical-group-3">
-                    <label for="hs-radio-vertical-group-3" class="text-sm text-gray-800 ml-2">Only update existing ones</label>
-                  </div>
-            </div>
-
-
-
-
-
-            <!-- <div class="text-gray-500 flex gap-2 items-center py-1">
-                <input type="radio" checked />
-                <label for=""></label>
-            </div>
-            <div class="text-gray-500 flex gap-2 items-center py-1">
-                <input type="radio" />
-                <label for=""></label>
-            </div>
-            <div class="text-gray-500 flex gap-2 items-center pt-1">
-                <input type="radio" />
-                <label for=""></label>
-            </div> -->
+                    <input
+                        required
+                        type="radio"
+                        name="hs-radio-vertical-group"
+                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-green-600 focus:ring-green-500 checked:bg-green-800"
+                        id="hs-radio-vertical-group-3"
+                    />
+                    <label
+                        for="hs-radio-vertical-group-3"
+                        class="text-sm text-gray-800 ml-2"
+                        >Only update existing ones</label
+                    >
+                </div>
+                <Button btnName="Next" on:click={handleNext} />
+            </form>
         </div>
-        <Button btnName="Next" on:click={handleNext} />
-
         <!-- End of upload files field -->
     {/if}
 
@@ -194,42 +221,6 @@
         </div>
     {/if}
 </div>
-
-
-
-
-
-<style>
-    table tbody td {
-        height: 4.5rem;
-        border-bottom: 1px solid rgba(192, 192, 192, 0.809);
-        margin-top: 2rem;
-        font-size: 0.65rem;
-        font-weight: 600;
-    }
-
-    table tbody tr:last-child td {
-        border: none;
-    }
-
-
-    table tbody td:nth-child(2), table tbody td:first-child{
-        width: 33%;
-    }
-
-    .active{
-        /* w-8 aspect-square border-2 border-green-300 rounded-full bg-green-300 m-3 font-bold */
-        border: 1px solid green;
-        background-color: green;
-    }
-
-    input[type="radio"] {
-        padding: 0.5em;
-        appearance: none;
-        border: solid;
-        border-radius: 3em;
-    }
-</style>
 
 <!--
 <script>
@@ -398,3 +389,35 @@
     {/if}
 </div>
 -->
+
+<style>
+    table tbody td {
+        height: 4.5rem;
+        border-bottom: 1px solid rgba(192, 192, 192, 0.809);
+        margin-top: 2rem;
+        font-size: 0.65rem;
+        font-weight: 600;
+    }
+
+    table tbody tr:last-child td {
+        border: none;
+    }
+
+    table tbody td:nth-child(2),
+    table tbody td:first-child {
+        width: 33%;
+    }
+
+    .active {
+        /* w-8 aspect-square border-2 border-green-300 rounded-full bg-green-300 m-3 font-bold */
+        border: 1px solid green;
+        background-color: green;
+    }
+
+    input[type="radio"] {
+        padding: 0.5em;
+        appearance: none;
+        border: solid;
+        border-radius: 3em;
+    }
+</style>
