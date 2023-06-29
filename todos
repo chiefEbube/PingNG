@@ -1,10 +1,8 @@
 # Update table from the form //
 # Fix checkbox - Very Easy //
 # Refactor Add Contact and Import CSV Cards to be a single card//
+# When input fields are empty action buttons should be disabled//
+# Add an indicator that shows user has selected a file//
 
 
-
-
-# When input fields are empty action buttons should be disabled
-# Add an indicator that shows user has selected a file
 # Add Loading indicator on API action button click and button should be disabled

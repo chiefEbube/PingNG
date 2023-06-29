@@ -8,7 +8,7 @@
     let headings = ["First Name", "Last Name", "Phone Number"];
 
     let contacts = [];
-    let pageNumber = 1;
+    let pageNumber = 2;
 
 
     const updateTable = async () => {

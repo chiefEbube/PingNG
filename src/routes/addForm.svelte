@@ -25,9 +25,16 @@
         contactInfo[0].first_name = "";
         contactInfo[0].last_name = "";
         contactInfo[0].phone_no = "";
+        contactInfo[0].country_code_id = ""
 
         dispatch("addContact");
     };
+
+    $: isDisabled =
+        (contactInfo[0].first_name.length == 0) ||
+        (contactInfo[0].last_name.length == 0) ||
+        (contactInfo[0].phone_no.length == 0) ||
+        (contactInfo[0].country_code_id.length == 0)
 </script>
 
 <form class="my-10">
