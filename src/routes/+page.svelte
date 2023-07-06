@@ -5,24 +5,28 @@
     import Table from "./table.svelte";
     import TopCard from "./top_card.svelte";
 
+    let links = [];
+
+    let perPage = 10;
+    let sort = {"first_name":"desc"};
+    let initialUrl = "http://localhost:8000/api/contact-list?page=1"
+
     let headings = ["First Name", "Last Name", "Phone Number"];
 
     let contacts = [];
-    let pageNumber = 2;
 
-
-    const updateTable = async () => {
+    const updateTable = async (url) => {
         let request = await fetch(
-            `http://localhost:8000/api/contact-list?page=${pageNumber}&sort={"first_name":"desc"}&perPage=10`
+            `${url}&sort=${JSON.stringify(sort)}&perPage=${perPage}`
         );
 
         let response = await request.json();
         contacts = response.data;
-
-        console.log(contacts)
+        links = response.links;
+        
     };
 
-    onMount(updateTable);
+    onMount(() => updateTable(initialUrl));
 </script>
 
 <main class="relative w-full min-h-screen">
@@ -39,7 +43,7 @@
             <TopCard on:add_contact={updateTable} />
 
             <!-- Table -->
-            <Table {headings}>
+            <Table {headings} {links} on:paginationClick={ (e) => updateTable(e.detail.url) }>
                 {#each contacts as contact}
                     <tr>
                         <td
@@ -56,7 +60,6 @@
                         >
                     </tr>
                 {/each}
-
             </Table>
         </div>
     </div>
