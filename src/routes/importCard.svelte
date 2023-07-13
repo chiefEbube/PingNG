@@ -31,9 +31,9 @@
         try {
             const response = await fetch("http://localhost:8000/api/contact/import", {
                 method: "POST",
-                headers: {
-                    'Content-Type': 'application/form-data'
-                },
+                // headers: {
+                //     'Content-Type': 'application/form-data'
+                // },
                 body: formData,
             });
 
