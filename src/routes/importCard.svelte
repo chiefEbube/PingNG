@@ -11,22 +11,49 @@
     let showUploadFileField = true;
     let showNext = false;
     let title = "Choose file to import";
-    let isFile = false
+    let isFile = false;
 
-    let files;
-    $: if (files) {
-        for (const file of files) {
-            title = `${file.name}: ${(file.size / (1000 * 1000)).toFixed(2)} MB`;
-            isFile = true
-        }
+    let file;
+
+    const handleFileChange = (event) => {
+        file = event.target.files[0];
+    };
+
+    $: if (file) {
+        title = `${file.name}: ${(file.size / (1000 * 1000)).toFixed(2)} MB`;
+        isFile = true;
     }
+
+    const uploadFile = async () => {
+        const formData = new FormData();
+        formData.append("file", file);
+
+        try {
+            const response = await fetch("http://localhost:8000/api/contact/import", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/form-data'
+                },
+                body: formData,
+            });
+
+            if (response.ok) {
+                console.log("File uploaded successfully");
+            } else {
+                console.error("Failed to upload file");
+            }
+        } catch (error) {
+            console.error("Error occurred while uploading file", error);
+        }
+    };
 
     const handleShowUploadFileField = () => {
         showUploadFileField = true;
         showNext = false;
     };
 
-    const handleNext = () => {
+    const handleNext = async() => {
+        await uploadFile();
         showNext = true;
         showUploadFileField = false;
     };
@@ -78,12 +105,16 @@
             >
         </div>
 
-        <div class={`border-dashed border-2 grid gap-5 py-5 ${ isFile ? 'active' : ''}`}>
+        <div
+            class={`border-dashed border-2 grid gap-5 py-5 ${
+                isFile ? "active" : ""
+            }`}
+        >
             <input
                 disabled={isFile}
                 type="file"
                 accept=".csv"
-                bind:files
+                on:change={handleFileChange}
                 required
                 id="importBtn"
                 class="hidden"
@@ -113,7 +144,8 @@
                         name="hs-radio-vertical-group"
                         class="shrink-0 mt-0.5 border-gray-200 rounded-full text-green-600 focus:ring-green-500 checked:bg-green-800"
                         id="hs-radio-vertical-group-1"
-                        checked/>
+                        checked
+                    />
                     <label
                         for="hs-radio-vertical-group-1"
                         class="text-sm text-gray-800 ml-2"
@@ -150,12 +182,14 @@
                         >Only update existing ones</label
                     >
                 </div>
-                <button disabled={!isFile} on:click={handleNext} class="bg-green-700 text-white p-3 rounded w-full h-fit cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+                <button
+                    disabled={!isFile}
+                    on:click={handleNext}
+                    class="bg-green-700 text-white p-3 rounded w-full h-fit cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                >
                     Next
                 </button>
             </form>
-
-                
         </div>
         <!-- End of upload files field -->
     {/if}
