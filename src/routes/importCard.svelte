@@ -2,11 +2,8 @@
     import DropdownButton from "./dropdown_button.svelte";
     import Button from "./button.svelte";
 
-    let dropDownOptions = [
-        { value: "firstName", label: "First Name", selected: "First Name" },
-        { value: "lastName", label: "Last name", selected: "Last Name" },
-        { value: "phone", label: "Phone Number", selected: "Phone Number" },
-    ];
+    let dropDownOptions = [];
+    let headingRows = []
 
     let showUploadFileField = true;
     let showNext = false;
@@ -29,7 +26,7 @@
         formData.append("file", file);
 
         try {
-            const response = await fetch("http://localhost:8000/api/contact/import", {
+            const request = await fetch("http://localhost:8000/api/contact/import", {
                 method: "POST",
                 // headers: {
                 //     'Content-Type': 'application/form-data'
@@ -37,8 +34,22 @@
                 body: formData,
             });
 
-            if (response.ok) {
-                console.log("File uploaded successfully");
+            if (request.ok) {
+                let response = await request.json()
+                let dropdown = []
+        
+                for (const key in response.mappings){
+                    let dropObj = {
+                        label: response.mappings[key],
+                        value: key,
+                        selected: response.mappings[key]
+                    }
+                    dropdown.push(dropObj)
+                    
+                }
+
+                dropDownOptions = dropdown
+                headingRows = response.row_headings
             } else {
                 console.error("Failed to upload file");
             }
@@ -216,44 +227,20 @@
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>First name</td>
-                            <td>Mayorkun</td>
-                            <td>
-                                <DropdownButton
-                                    on:option-clicked={(e) =>
-                                        setSelectedValue(e.detail.label, 0)}
-                                    title={dropDownOptions[0].selected}
-                                    {dropDownOptions}
-                                />
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Second name</td>
-                            <td>Saludeen</td>
-                            <td>
-                                <DropdownButton
-                                    on:option-clicked={(e) =>
-                                        setSelectedValue(e.detail.label, 1)}
-                                    title={dropDownOptions[1].selected}
-                                    {dropDownOptions}
-                                />
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Phone Number</td>
-                            <td>23480123456789</td>
-                            <td>
-                                <DropdownButton
-                                    on:option-clicked={(e) =>
-                                        setSelectedValue(e.detail.label, 2)}
-                                    title={dropDownOptions[2].selected}
-                                    {dropDownOptions}
-                                />
-                            </td>
-                        </tr>
+                        {#each Object.entries(headingRows) as [index, heading], key}
+                            <tr>
+                                <td>{index}</td>
+                                <td>{heading}</td>
+                                <td>
+                                    <DropdownButton
+                                        on:option-clicked={(e) =>
+                                            setSelectedValue(e.detail.label, key)}
+                                        title={dropDownOptions[key].selected}
+                                        {dropDownOptions}
+                                    />
+                                </td>
+                            </tr>
+                        {/each}
                     </tbody>
                 </table>
             </div>

@@ -12,8 +12,8 @@
     
     const dispatch  = createEventDispatcher();
 
-    const handleDropDownOptionClick = (value, label) => {
-        dispatch('option-clicked', { value, label})
+    const handleDropDownOptionClick = (value, label, index) => {
+        dispatch('option-clicked', { value, label, index})
     }
 
     
@@ -33,7 +33,7 @@
         <div transition:fade={{ delay: 250, duration: 300 }}
         class="absolute top-15 w-40 left-0 px-2 pt-2 bg-white z-40 drop-shadow-md rounded-sm">
             {#each dropDownOptions as option, index}
-                <button class="p-2 mb-2 rounded-sm hover:bg-gray-100 w-full text-left" on:click={ () => handleDropDownOptionClick(option.value, option.label) }>
+                <button class="p-2 mb-2 rounded-sm hover:bg-gray-100 w-full text-left" on:click={ () => handleDropDownOptionClick(option.value, option.label, index) }>
                 {option.label}</button>
             {/each}
         </div>
